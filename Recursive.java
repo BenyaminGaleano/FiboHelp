@@ -65,6 +65,7 @@ public class Recursive{
 		n = sC.nextInt();
 
 		rC.end(rC.fibonacci(n), n);
+		sC.close();
 	}
 
 }

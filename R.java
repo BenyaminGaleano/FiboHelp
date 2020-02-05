@@ -11,23 +11,19 @@ public class R{
 		String box = "[%s]";
 		StringBuilder aux = new StringBuilder();
 		aux.append(path.toString());
-		boolean isAdd = false;
 
 		if((x <= mat.length-1 && y<=mat[0].length-1)&&(x == xfinal && y == yfinal)){
 			aux.append(String.format("(%d,%d)", y, x));
 			list.add(String.format(box, aux.toString()));
 			return;
 		} 
-		if(x < mat.length-1 && y<mat[0].length-1 ){
-			if(mat[x][y+1]){
-				aux.append(String.format("(%d,%d), ", y, x));
-				getpath(x, y+1, aux);
-			} if(mat[x+1][y]){
-				isAdd = true;
-				if(!isAdd)
-				aux.append(String.format("(%d,%d), ", y, x));
-				getpath(x+1, y, aux);
-			}
+		if(y<mat[0].length-1 && mat[x][y+1]){
+			aux.append(String.format("(%d,%d), ", y, x));
+			getpath(x, y+1, aux);
+		} if(x < mat.length-1 && mat[x+1][y]){
+			
+			aux.append(String.format("(%d,%d), ", y, x));
+			getpath(x+1, y, aux);
 		}
 	}
 
@@ -41,7 +37,7 @@ public class R{
 		String dis = "inicio\n";
 		for(int i=0; i<width; i++){
 			for(int ii = 0; ii<height; ii++){
-				mat[i][ii]=(ran.nextInt(101)%2)==0;
+				mat[i][ii]=true;//(ran.nextInt(101)%2)==0;
 				dis = dis.concat(mat[i][ii]+" | ");
 			}
 			dis += "\n";
@@ -90,6 +86,7 @@ public class R{
 			getpath(0, 0, new StringBuilder());
 			print("\n"+list.toString()+"\n");
 		}
+		scan.close();
 	}
 
 	private R(){}
